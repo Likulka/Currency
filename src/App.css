@@ -1,8 +1,26 @@
+* {
+	box-sizing: border-box;
+}
+
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+	width: 100%;
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	color: #e5e5e5;
+}
+
+:root {
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: #213547;
 }
 
 .logo {
@@ -39,4 +57,64 @@
 
 .read-the-docs {
   color: #888;
+}
+
+h1 {
+	display: inline;
+	padding-right: 20px;
+}
+
+.data-wrapper {
+	display: flex;
+	flex-direction: row;
+	padding-top: 20px;
+	width: 100%;
+	align-content: flex-start;
+}
+
+.data-wrapper div {
+	flex: 1 1 auto;
+}
+
+.data-wrapper > div > table {
+	margin: 0 auto;
+}
+
+.uploader {
+	text-align: left;
+	display: flex;
+	align-items: center;
+}
+
+.uploader input {
+	display: none;
+}
+
+.uploader label {
+	display: inline-block;
+	padding: 6px 12px;
+	cursor: pointer;
+	background-color: #125b60;
+	color: #e5e5e5;
+	border-radius: 5px;
+	border: 1px solid transparent;
+	transition: all 0.3s ease;
+}
+.uploader label:hover {
+	opacity: 0.8;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th,
+td {
+	border: 1px solid #337a4e;
+	padding: 8px;
+}
+
+th {
+	font-weight: 400;
+	background-color: #125b60;
 }

@@ -1,7 +1,7 @@
 const CurrencyDataTable = ({ data }) => {
 	console.log('j3r3df')
 	if (!data || data.length === 0) {
-		return <p>Нет данных для отображения</p>
+		return <p>Здесь будет таблица</p>
 	}
 
 	return (
