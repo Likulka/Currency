@@ -5,10 +5,14 @@ import FileUploader from './components/FileUploader'
 
 function App() {
 	const [currencyData, setCurrencyData] = useState([])
+	const [joggingData, setJoggingData] = useState([])
 
 	return (
 		<>
-			<FileUploader setCurrencyData={setCurrencyData} />
+			<FileUploader
+				setCurrencyData={setCurrencyData}
+				setJoggingData={setJoggingData}
+			/>
 			<CurrencyDataTable data={currencyData} />
 		</>
 	)
