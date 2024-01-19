@@ -47,8 +47,7 @@ const FileUploader = ({ setCurrencyData, setJoggingData }) => {
 				setCurrencyData(data)
 			} else if (file.name.endsWith('jogging.csv')) {
 				const data = parseJoggingData(content)
-				console.log(data)
-				setJoggingData(data)
+				setJoggingData(data.reverse())
 			}
 		}
 		fileReader.readAsText(file)

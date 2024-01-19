@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import CurrencyDataTable from './components/CurrencyDataTable'
 import FileUploader from './components/FileUploader'
+import JoggingDataTable from './components/JoggingDataTable'
 
 function App() {
 	const [currencyData, setCurrencyData] = useState([])
@@ -14,6 +15,7 @@ function App() {
 				setJoggingData={setJoggingData}
 			/>
 			<CurrencyDataTable data={currencyData} />
+			<JoggingDataTable data={joggingData} />
 		</>
 	)
 }
