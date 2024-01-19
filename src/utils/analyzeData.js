@@ -9,7 +9,7 @@ export default function analyzeData(data) {
 	}
 
 	for (let i = 1; i < data.length; i++) {
-		;['eur', 'usd'].forEach(key => {
+		['eur', 'usd'].forEach(key => {
 			const change = data[i][key] - data[i - 1][key]
 			if (change > maxGain[key].value) {
 				maxGain[key] = { value: change, date: data[i].date }
