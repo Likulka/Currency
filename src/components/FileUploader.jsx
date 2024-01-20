@@ -57,9 +57,11 @@ const FileUploader = ({ setCurrencyData, setJoggingData }) => {
 		<div>
 			<input
 				type='file'
+				id='file-upload'
 				accept='.csv'
 				onChange={e => handleFileUpload(e.target.files[0])}
 			/>
+			<label htmlFor='file-upload'>Загрузить файл</label>
 		</div>
 	)
 }

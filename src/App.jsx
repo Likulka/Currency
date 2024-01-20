@@ -12,16 +12,24 @@ function App() {
 
 	return (
 		<>
-			<FileUploader
-				setCurrencyData={setCurrencyData}
-				setJoggingData={setJoggingData}
-			/>
-			<CurrencyDataTable data={currencyData} />
-			{joggingData.length != 0 && <JoggingGraph data={joggingData} />}
-			<p>
-				Количество км в выходные = <span>{distanceSum(joggingData)}</span>
-			</p>
-			<JoggingDataTable data={joggingData} />
+			<div className='uploader'>
+				<FileUploader
+					setCurrencyData={setCurrencyData}
+					setJoggingData={setJoggingData}
+				/>
+			</div>
+			<div className='data-wrapper'>
+				<CurrencyDataTable data={currencyData} />
+				{joggingData.length != 0 && (
+					<div>
+						<JoggingGraph data={joggingData} />{' '}
+						<p>
+							Количество км в выходные = <span>{distanceSum(joggingData)}</span>
+						</p>{' '}
+						<JoggingDataTable data={joggingData} />
+					</div>
+				)}
+			</div>
 		</>
 	)
 }
