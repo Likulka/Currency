@@ -9,7 +9,7 @@ import {
 	YAxis,
 } from 'recharts'
 
-const CurrencyGraph = ({ data, children }) => {
+const Graph = ({ data, children, lines }) => {
 	return (
 		<div>
 			<ResponsiveContainer width='100%' height={500}>
@@ -22,13 +22,13 @@ const CurrencyGraph = ({ data, children }) => {
 					<Legend />
 					<Line
 						type='monotone'
-						dataKey='eur'
+						dataKey={lines[0]}
 						stroke='#8884d8'
 						activeDot={{ r: 8 }}
 					/>
 					<Line
 						type='monotone'
-						dataKey='usd'
+						dataKey={lines[1]}
 						stroke='#5db17d'
 						activeDot={{ r: 8 }}
 					/>
@@ -39,4 +39,4 @@ const CurrencyGraph = ({ data, children }) => {
 	)
 }
 
-export default CurrencyGraph
+export default Graph

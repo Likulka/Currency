@@ -1,7 +1,7 @@
 const FileUploader = ({ setCurrencyData, setJoggingData }) => {
 	const parseCurrencyData = content => {
 		const rows = content.trim().split('\n')
-		return rows.slice(1).map((row) => {
+		return rows.slice(1).map(row => {
 			const [date, usd, eur] = row.split(';')
 			return {
 				date,
@@ -10,7 +10,6 @@ const FileUploader = ({ setCurrencyData, setJoggingData }) => {
 			}
 		})
 	}
-
 
 	const parseJoggingData = content => {
 		const rows = content.trim().split('\n')
@@ -35,6 +34,7 @@ const FileUploader = ({ setCurrencyData, setJoggingData }) => {
 				averagePulse: parseInt(averagePulse),
 			}
 		})
+	}
 
 	const handleFileUpload = file => {
 		const fileReader = new FileReader()

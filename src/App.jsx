@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import CurrencyAnalyze from './components/CurrencyAnalyze.jsx'
 import CurrencyDataTable from './components/CurrencyDataTable'
-import CurrencyGraph from './components/CurrencyGraph'
 import FileUploader from './components/FileUploader'
+import Graph from './components/Graph.jsx'
 import JoggingDataTable from './components/JoggingDataTable.jsx'
 import Tabs from './components/Tabs.jsx'
 import analyzeData from './utils/analyzeData.js'
@@ -42,14 +42,14 @@ function App() {
 				{activeTab === 'currency' && currencyData.length > 0 && (
 					<>
 						<CurrencyDataTable data={currencyData} />
-						<CurrencyGraph data={currencyData} lines={['eur', 'usd']}>
+						<Graph data={currencyData} lines={['eur', 'usd']}>
 							{analysis && <CurrencyAnalyze data={analysis} />}
-						</CurrencyGraph>
+						</Graph>
 					</>
 				)}
 				{activeTab === 'jogging' && joggingData.length > 0 && (
 					<div>
-						<CurrencyGraph data={joggingData} lines={['distance', 'time']} />
+						<Graph data={joggingData} lines={['distance', 'time']} />
 						<p>
 							Количество км в выходные = <span>{distanceSum(joggingData)}</span>
 						</p>
