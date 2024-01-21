@@ -1,4 +1,4 @@
-const FileUploader = ({ setCurrencyData }) => {
+const FileUploader = ({ setCurrencyData, setJoggingData }) => {
 	const parseCurrencyData = content => {
 		const rows = content.trim().split('\n')
 		return rows.slice(1).map((row) => {
@@ -11,15 +11,45 @@ const FileUploader = ({ setCurrencyData }) => {
 		})
 	}
 
-	const handleFileRead = e => {
-		const content = e.target.result
-		const data = parseCurrencyData(content)
-		setCurrencyData(data.reverse())
-	}
 
-	const handleFileChosen = file => {
-		let fileReader = new FileReader()
-		fileReader.onloadend = handleFileRead
+	const parseJoggingData = content => {
+		const rows = content.trim().split('\n')
+		return rows.slice(1).map(row => {
+			const [
+				date,
+				time,
+				distance,
+				maxSpeed,
+				minSpeed,
+				averageSpeed,
+				averagePulse,
+			] = row.split(';')
+
+			return {
+				date,
+				time: parseInt(time),
+				distance: parseFloat(distance),
+				maxSpeed: parseFloat(maxSpeed),
+				minSpeed: parseFloat(minSpeed),
+				averageSpeed: parseFloat(averageSpeed),
+				averagePulse: parseInt(averagePulse),
+			}
+		})
+
+	const handleFileUpload = file => {
+		const fileReader = new FileReader()
+
+		fileReader.onloadend = e => {
+			const content = e.target.result
+			if (file.name.endsWith('currency.csv')) {
+				const data = parseCurrencyData(content)
+				console.log(data)
+				setCurrencyData(data)
+			} else if (file.name.endsWith('jogging.csv')) {
+				const data = parseJoggingData(content)
+				setJoggingData(data.reverse())
+			}
+		}
 		fileReader.readAsText(file)
 	}
 
@@ -30,7 +60,7 @@ const FileUploader = ({ setCurrencyData }) => {
 				type='file'
 				id='file-upload'
 				accept='.csv'
-				onChange={e => handleFileChosen(e.target.files[0])}
+				onChange={e => handleFileUpload(e.target.files[0])}
 			/>
 			<label htmlFor='file-upload'>Загрузить файл</label>
 		</div>

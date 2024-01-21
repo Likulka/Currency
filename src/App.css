@@ -3,13 +3,18 @@
 }
 
 #root {
-  max-width: 1280px;
+	max-width: 1280px;
 	width: 100%;
 	margin: 0 auto;
 	padding: 2rem;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
+	color: antiquewhite;
+}
+
+p {
+	font-size: 20px;
 	color: #e5e5e5;
 }
 
@@ -23,40 +28,86 @@
 	background-color: #213547;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h1 {
+	display: inline;
+	padding-right: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.data-wrapper {
+	display: flex;
+	flex-direction: row;
+	padding-top: 20px;
+	width: 100%;
+	align-content: flex-start;
+	/* flex-wrap: wrap-reverse; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.data-wrapper div {
+	flex: 1 1 auto;
+}
+.data-wrapper span {
+	font-weight: 600;
 }
 
-.card {
-  padding: 2em;
+.data-wrapper > div > table {
+	margin: 20px auto;
 }
 
-.read-the-docs {
-  color: #888;
+.uploader {
+	text-align: left;
+	display: flex;
+	align-items: center;
+}
+
+.uploader input {
+	display: none;
+}
+
+.uploader label {
+	display: inline-block;
+	padding: 6px 12px;
+	cursor: pointer;
+	background-color: #125b60;
+	color: #e5e5e5;
+	border-radius: 5px;
+	border: 1px solid transparent;
+	transition: all 0.3s ease;
+}
+.uploader label:hover {
+	opacity: 0.8;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th,
+td {
+	border: 1px solid #337a4e;
+	padding: 8px;
+}
+
+th {
+	font-weight: 400;
+	background-color: #125b60;
+}
+
+button {
+	display: inline-block;
+	padding: 10px;
+	font-size: 16px;
+	cursor: pointer;
+	border: 3px solid #125b60;
+	background-color: transparent;
+	color: #e5e5e5;
+	box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.1);
+	border-radius: 5px;
+	transition: all 0.3s ease;
+	font-weight: 600;
+}
+
+button.active {
+	background-color: #5db1985b;
 }
 
 h1 {
