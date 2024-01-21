@@ -1,15 +1,16 @@
 const FileUploader = ({ setCurrencyData, setJoggingData }) => {
 	const parseCurrencyData = content => {
 		const rows = content.trim().split('\n')
-		return rows.slice(1).map((row, index) => {
-			const [date, eur, usd] = row.split(';')
+		return rows.slice(1).map((row) => {
+			const [date, usd, eur] = row.split(';')
 			return {
 				date,
-				rate1: parseFloat(eur),
-				rate2: parseFloat(usd),
+				usd: parseFloat(usd),
+				eur: parseFloat(eur),
 			}
 		})
 	}
+
 
 	const parseJoggingData = content => {
 		const rows = content.trim().split('\n')
@@ -34,7 +35,6 @@ const FileUploader = ({ setCurrencyData, setJoggingData }) => {
 				averagePulse: parseInt(averagePulse),
 			}
 		})
-	}
 
 	const handleFileUpload = file => {
 		const fileReader = new FileReader()
@@ -54,7 +54,8 @@ const FileUploader = ({ setCurrencyData, setJoggingData }) => {
 	}
 
 	return (
-		<div>
+		<div className='uploader'>
+			<h1>Загрузите csv файл</h1>
 			<input
 				type='file'
 				id='file-upload'
