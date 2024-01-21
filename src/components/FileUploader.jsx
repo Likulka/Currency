@@ -35,6 +35,7 @@ const FileUploader = ({ setCurrencyData, setJoggingData }) => {
 				averagePulse: parseInt(averagePulse),
 			}
 		})
+	}
 
 	const handleFileUpload = file => {
 		const fileReader = new FileReader()
