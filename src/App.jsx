@@ -3,11 +3,14 @@ import './App.css'
 import CurrencyDataTable from './components/CurrencyDataTable'
 import CurrencyGraph from './components/CurrencyGraph'
 import FileUploader from './components/FileUploader'
+import Tabs from './components/Tabs.jsx'
+import CurrencyAnalyze from './components/CurrencyAnalyze.jsx'
 import analyzeData from './utils/analyzeData.js'
 
 function App() {
 	const [currencyData, setCurrencyData] = useState([])
 	const [analysis, setAnalysis] = useState(null)
+	const [activeTab, setActiveTab] = useState('currency')
 
 	const renderAnalysis = () => {
 		if (!analysis) return null
@@ -60,10 +63,15 @@ function App() {
 	return (
 		<>
 			<FileUploader setCurrencyData={setCurrencyData} />
+			<Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
 			<div className='data-wrapper'>
-				<CurrencyDataTable data={currencyData} />
-				{currencyData.length !== 0 && (
-					<CurrencyGraph data={currencyData}>{renderAnalysis()}</CurrencyGraph>
+				{activeTab === 'currency' && currencyData.length > 0 && (
+					<>
+						<CurrencyDataTable data={currencyData} />
+						<CurrencyGraph data={currencyData} lines={['eur', 'usd']}>
+							{analysis && <CurrencyAnalyze data={analysis} />}
+						</CurrencyGraph>
+					</>
 				)}
 			</div>
 		</>
