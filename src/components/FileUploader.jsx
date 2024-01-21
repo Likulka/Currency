@@ -1,36 +1,69 @@
-const FileUploader = ({ setCurrencyData }) => {
+const FileUploader = ({ setCurrencyData, setJoggingData }) => {
 	const parseCurrencyData = content => {
 		const rows = content.trim().split('\n')
-		return rows.slice(1).map((row, index) => {
-			const [date, eur, usd] = row.split(';')
+		return rows.slice(1).map((row) => {
+			const [date, usd, eur] = row.split(';')
 			return {
 				date,
-				rate1: parseFloat(eur),
-				rate2: parseFloat(usd),
+				usd: parseFloat(usd),
+				eur: parseFloat(eur),
 			}
 		})
 	}
 
-	const handleFileRead = e => {
-		const content = e.target.result
-		const data = parseCurrencyData(content)
-		setCurrencyData(data) // Обновляем состояние в App
+
+	const parseJoggingData = content => {
+		const rows = content.trim().split('\n')
+		return rows.slice(1).map(row => {
+			const [
+				date,
+				time,
+				distance,
+				maxSpeed,
+				minSpeed,
+				averageSpeed,
+				averagePulse,
+			] = row.split(';')
+
+			return {
+				date,
+				time: parseInt(time),
+				distance: parseFloat(distance),
+				maxSpeed: parseFloat(maxSpeed),
+				minSpeed: parseFloat(minSpeed),
+				averageSpeed: parseFloat(averageSpeed),
+				averagePulse: parseInt(averagePulse),
+			}
+		})
 	}
 
-	const handleFileChosen = file => {
-		let fileReader = new FileReader()
-		fileReader.onloadend = handleFileRead
+	const handleFileUpload = file => {
+		const fileReader = new FileReader()
+
+		fileReader.onloadend = e => {
+			const content = e.target.result
+			if (file.name.endsWith('currency.csv')) {
+				const data = parseCurrencyData(content)
+				console.log(data)
+				setCurrencyData(data)
+			} else if (file.name.endsWith('jogging.csv')) {
+				const data = parseJoggingData(content)
+				setJoggingData(data.reverse())
+			}
+		}
 		fileReader.readAsText(file)
 	}
 
 	return (
-		<div>
+		<div className='uploader'>
+			<h1>Загрузите csv файл</h1>
 			<input
 				type='file'
+				id='file-upload'
 				accept='.csv'
-				onChange={e => handleFileChosen(e.target.files[0])}
+				onChange={e => handleFileUpload(e.target.files[0])}
 			/>
-			{/* Отображение данных, если они были загружены */}
+			<label htmlFor='file-upload'>Загрузить файл</label>
 		</div>
 	)
 }
